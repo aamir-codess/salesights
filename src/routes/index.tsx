@@ -62,7 +62,7 @@ function UploadPage() {
         setError(result.error);
         return;
       }
-      setSalesData(file.name, result.summary);
+      setSalesData(file.name, result.summary, result.skippedRows);
       navigate({ to: "/dashboard" });
     } catch {
       setError("Something went wrong while reading that file. Please try a different CSV.");
