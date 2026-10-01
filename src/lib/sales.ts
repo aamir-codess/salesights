@@ -28,7 +28,7 @@ export interface SalesSummary {
 }
 
 export type ParseResult =
-  | { ok: true; rows: SaleRow[]; summary: SalesSummary }
+  | { ok: true; rows: SaleRow[]; summary: SalesSummary; skippedRows: number }
   | { ok: false; error: string };
 
 const REQUIRED_COLUMNS = ["date", "product", "amount"];
@@ -171,7 +171,7 @@ export function parseSalesCsv(file: File): Promise<ParseResult> {
           return;
         }
 
-        resolve({ ok: true, rows, summary: summarize(rows) });
+        resolve({ ok: true, rows, summary: summarize(rows), skippedRows: problems.length });
       },
       error: () => {
         resolve({

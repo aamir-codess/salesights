@@ -7,12 +7,14 @@ import {
   TrendingUp,
   Upload,
   ArrowDownWideNarrow,
+  TriangleAlert,
 } from "lucide-react";
 import {
   Bar,
   BarChart,
   CartesianGrid,
   Cell,
+  LabelList,
   Line,
   LineChart,
   ResponsiveContainer,
@@ -24,6 +26,7 @@ import { formatRs } from "@/lib/sales";
 import { getSalesData, clearSalesData } from "@/lib/sales-store";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
@@ -71,7 +74,13 @@ function DashboardPage() {
 
   if (!data) return null;
 
-  const { summary, fileName } = data;
+  const { summary, fileName, skippedRows } = data;
+
+  // If the top product dwarfs the rest (more than 5x the next highest), use a
+  // logarithmic axis so the smaller bars stay visible and readable.
+  const top = summary.topProducts;
+  const useLogScale =
+    top.length > 1 && top[1].revenue > 0 && top[0].revenue > 5 * top[1].revenue;
 
   const cards = [
     {
@@ -119,6 +128,18 @@ function DashboardPage() {
           From <span className="font-medium text-foreground">{fileName}</span> — processed in your
           browser only, nothing stored.
         </p>
+
+        {skippedRows > 0 && (
+          <Alert className="mt-4 border-amber-500/50 bg-amber-50 text-amber-900 dark:bg-amber-950/40 dark:text-amber-200">
+            <TriangleAlert className="h-4 w-4" />
+            <AlertTitle>Some rows were skipped</AlertTitle>
+            <AlertDescription>
+              {skippedRows.toLocaleString("en-PK")} {skippedRows === 1 ? "row was" : "rows were"}{" "}
+              skipped due to invalid or missing data (blank or negative amounts, non-numeric
+              values, or missing dates). The charts below use only the valid rows.
+            </AlertDescription>
+          </Alert>
+        )}
 
         {/* Summary cards */}
         <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
