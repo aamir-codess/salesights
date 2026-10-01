@@ -112,7 +112,7 @@ export function parseSalesCsv(file: File): Promise<ParseResult> {
           resolve({
             ok: false,
             error: `Your file is missing required column${missing.length > 1 ? "s" : ""}: ${missing
-              .map((c) => `"${c[0].toUpperCase()}${c.slice(1)}"`)
+              .map((c) => `"${c.charAt(0).toUpperCase()}${c.slice(1)}"`)
               .join(", ")}. Please make sure your CSV has Date, Product and Amount columns.`,
           });
           return;
