@@ -7,16 +7,16 @@ A mobile-friendly web app that lets small business owners upload a sales CSV fil
 ![Dashboard Overview](Screenshot_2026-10-03-00-42-51-131_com.android.chrome.jpg)
 **Dashboard Overview**
 
-![Upload with Data Validation](screenshots/Screenshot_2026-10-03-00-43-20-124_com.android.chrome.jpg)
+![Upload with Data Validation](Screenshot_2026-10-03-00-43-20-124_com.android.chrome.jpg)
 **Upload with Data Validation**
 
-![Top Selling Products](screenshots/Screenshot_2026-10-03-00-43-32-627_com.android.chrome.jpg)
+![Top Selling Products](Screenshot_2026-10-03-00-43-32-627_com.android.chrome.jpg)
 **Top Selling Products**
 
-![Lowest Selling Products](screenshots/Screenshot_2026-10-03-00-43-36-667_com.android.chrome.jpg)
+![Lowest Selling Products](Screenshot_2026-10-03-00-43-36-667_com.android.chrome.jpg)
 **Lowest Selling Products**
 
-![Empty Data Handling](screenshots/Screenshot_2026-10-03-00-43-59-499_com.android.chrome.jpg)
+![Empty Data Handling](Screenshot_2026-10-03-00-43-59-499_com.android.chrome.jpg)
 **Empty Data Handling**
 
 ## Features
