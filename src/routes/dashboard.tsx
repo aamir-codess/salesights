@@ -236,6 +236,9 @@ function DashboardPage() {
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" horizontal={false} />
                   <XAxis
                     type="number"
+                    scale={useLogScale ? "log" : "auto"}
+                    domain={useLogScale ? [1, "auto"] : [0, "auto"]}
+                    allowDataOverflow={useLogScale}
                     tickFormatter={compactRs}
                     tick={{ fontSize: 12 }}
                     stroke="var(--muted-foreground)"
