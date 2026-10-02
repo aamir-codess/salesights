@@ -80,7 +80,9 @@ function DashboardPage() {
   // logarithmic axis so the smaller bars stay visible and readable.
   const top = summary.topProducts;
   const useLogScale =
-    top.length > 1 && top[1].revenue > 0 && top[0].revenue > 5 * top[1].revenue;
+    top.length > 1 &&
+    (top[1]?.revenue ?? 0) > 0 &&
+    (top[0]?.revenue ?? 0) > 5 * (top[1]?.revenue ?? 1);
 
   const cards = [
     {
@@ -272,7 +274,7 @@ function DashboardPage() {
                     <LabelList
                       dataKey="revenue"
                       position="right"
-                      formatter={(value) => formatRs(Number(value))}
+                      formatter={(value: unknown) => formatRs(Number(value))}
                       style={{ fontSize: 12, fill: "var(--foreground)" }}
                     />
                   </Bar>
