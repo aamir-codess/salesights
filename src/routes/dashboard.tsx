@@ -224,6 +224,12 @@ function DashboardPage() {
         <Card className="mt-6">
           <CardHeader>
             <CardTitle className="text-base">Top 5 Selling Products</CardTitle>
+            {useLogScale && (
+              <p className="text-xs text-muted-foreground">
+                One product is far ahead of the rest, so this chart uses a logarithmic scale to
+                keep the smaller bars readable. Labels show the real values.
+              </p>
+            )}
           </CardHeader>
           <CardContent>
             <div className="h-72 w-full sm:h-80">
