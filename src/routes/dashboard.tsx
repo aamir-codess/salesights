@@ -80,7 +80,9 @@ function DashboardPage() {
   // logarithmic axis so the smaller bars stay visible and readable.
   const top = summary.topProducts;
   const useLogScale =
-    top.length > 1 && top[1].revenue > 0 && top[0].revenue > 5 * top[1].revenue;
+    top.length > 1 &&
+    (top[1]?.revenue ?? 0) > 0 &&
+    (top[0]?.revenue ?? 0) > 5 * (top[1]?.revenue ?? 1);
 
   const cards = [
     {
@@ -224,6 +226,12 @@ function DashboardPage() {
         <Card className="mt-6">
           <CardHeader>
             <CardTitle className="text-base">Top 5 Selling Products</CardTitle>
+            {useLogScale && (
+              <p className="text-xs text-muted-foreground">
+                One product is far ahead of the rest, so this chart uses a logarithmic scale to
+                keep the smaller bars readable. Labels show the real values.
+              </p>
+            )}
           </CardHeader>
           <CardContent>
             <div className="h-72 w-full sm:h-80">
@@ -231,11 +239,14 @@ function DashboardPage() {
                 <BarChart
                   data={summary.topProducts}
                   layout="vertical"
-                  margin={{ top: 8, right: 16, left: 8, bottom: 0 }}
+                  margin={{ top: 8, right: 96, left: 8, bottom: 0 }}
                 >
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" horizontal={false} />
                   <XAxis
                     type="number"
+                    scale={useLogScale ? "log" : "auto"}
+                    domain={useLogScale ? [1, "auto"] : [0, "auto"]}
+                    allowDataOverflow={useLogScale}
                     tickFormatter={compactRs}
                     tick={{ fontSize: 12 }}
                     stroke="var(--muted-foreground)"
@@ -260,6 +271,28 @@ function DashboardPage() {
                     {summary.topProducts.map((_, i) => (
                       <Cell key={i} fill={CHART_COLORS[i % CHART_COLORS.length]} />
                     ))}
+                    <LabelList
+                      dataKey="revenue"
+                      content={(props) => {
+                        const { x, y, width, height, value } = props as {
+                          x?: number | string;
+                          y?: number | string;
+                          width?: number | string;
+                          height?: number | string;
+                          value?: number | string;
+                        };
+                        return (
+                          <text
+                            x={Number(x) + Number(width) + 6}
+                            y={Number(y) + Number(height) / 2 + 4}
+                            fontSize={12}
+                            fill="var(--foreground)"
+                          >
+                            {formatRs(Number(value))}
+                          </text>
+                        );
+                      }}
+                    />
                   </Bar>
                 </BarChart>
               </ResponsiveContainer>
