@@ -273,9 +273,25 @@ function DashboardPage() {
                     ))}
                     <LabelList
                       dataKey="revenue"
-                      position="right"
-                      formatter={(value: unknown) => formatRs(Number(value))}
-                      style={{ fontSize: 12, fill: "var(--foreground)" }}
+                      content={(props) => {
+                        const { x, y, width, height, value } = props as {
+                          x?: number | string;
+                          y?: number | string;
+                          width?: number | string;
+                          height?: number | string;
+                          value?: number | string;
+                        };
+                        return (
+                          <text
+                            x={Number(x) + Number(width) + 6}
+                            y={Number(y) + Number(height) / 2 + 4}
+                            fontSize={12}
+                            fill="var(--foreground)"
+                          >
+                            {formatRs(Number(value))}
+                          </text>
+                        );
+                      }}
                     />
                   </Bar>
                 </BarChart>
