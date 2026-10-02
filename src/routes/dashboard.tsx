@@ -239,7 +239,7 @@ function DashboardPage() {
                 <BarChart
                   data={summary.topProducts}
                   layout="vertical"
-                  margin={{ top: 8, right: 16, left: 8, bottom: 0 }}
+                  margin={{ top: 8, right: 96, left: 8, bottom: 0 }}
                 >
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" horizontal={false} />
                   <XAxis
