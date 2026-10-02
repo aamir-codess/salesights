@@ -263,6 +263,12 @@ function DashboardPage() {
                     {summary.topProducts.map((_, i) => (
                       <Cell key={i} fill={CHART_COLORS[i % CHART_COLORS.length]} />
                     ))}
+                    <LabelList
+                      dataKey="revenue"
+                      position="right"
+                      formatter={(value) => formatRs(Number(value))}
+                      style={{ fontSize: 12, fill: "var(--foreground)" }}
+                    />
                   </Bar>
                 </BarChart>
               </ResponsiveContainer>
