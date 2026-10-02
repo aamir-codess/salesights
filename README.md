@@ -2,6 +2,23 @@
 
 A mobile-friendly web app that lets small business owners upload a sales CSV file and instantly see revenue insights, without needing Excel or manual chart-making. Just upload your CSV and the dashboard appears in seconds — nothing is stored, so your data stays private.
 
+## Screenshots
+
+![Dashboard Overview](screenshots/Screenshot_2026-10-03-00-42-51-131_com.android.chrome.jpg)
+**Dashboard Overview**
+
+![Upload with Data Validation](screenshots/Screenshot_2026-10-03-00-43-20-124_com.android.chrome.jpg)
+**Upload with Data Validation**
+
+![Top Selling Products](screenshots/Screenshot_2026-10-03-00-43-32-627_com.android.chrome.jpg)
+**Top Selling Products**
+
+![Lowest Selling Products](screenshots/Screenshot_2026-10-03-00-43-36-667_com.android.chrome.jpg)
+**Lowest Selling Products**
+
+![Empty Data Handling](screenshots/Screenshot_2026-10-03-00-43-59-499_com.android.chrome.jpg)
+**Empty Data Handling**
+
 ## Features
 
 - CSV upload with example format guidance
